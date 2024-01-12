@@ -8355,6 +8355,7 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\vardonir\.conda\envs\blan
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span>
     <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span>
+    
     <span class="n">df</span><span class="p">[</span><span class="s2">"Country of Citizenship"</span><span class="p">]</span> <span class="o">=</span> <span class="n">cleaned_citizenship_list</span>
     <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"Country of Citizenship (Hebrew)"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -8389,12 +8390,12 @@ C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2015\4. Immigration\4.11 Entrant
 <pre>
 <span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
 <span class="ansi-red-intense-fg ansi-bold">ValueError</span>                                Traceback (most recent call last)
-Cell <span class="ansi-green-intense-fg ansi-bold">In[11], line 11</span>
+Cell <span class="ansi-green-intense-fg ansi-bold">In[11], line 12</span>
 <span class="ansi-green-fg">      9</span> df<span style="color: rgb(98,98,98)">.</span>dropna(inplace<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
 <span class="ansi-green-fg">     10</span> df<span style="color: rgb(98,98,98)">.</span>columns <span style="color: rgb(98,98,98)">=</span> columns
-<span class="ansi-green-intense-fg ansi-bold">---&gt; 11</span> df[<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">Country of Citizenship</span><span style="color: rgb(175,0,0)">"</span>] <span style="color: rgb(98,98,98)">=</span> cleaned_citizenship_list
-<span class="ansi-green-fg">     12</span> df<span style="color: rgb(98,98,98)">.</span>drop(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">Country of Citizenship (Hebrew)</span><span style="color: rgb(175,0,0)">"</span>, axis<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">1</span>, inplace<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
-<span class="ansi-green-fg">     14</span> entry_file_dict[year] <span style="color: rgb(98,98,98)">=</span> df
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 12</span> df[<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">Country of Citizenship</span><span style="color: rgb(175,0,0)">"</span>] <span style="color: rgb(98,98,98)">=</span> cleaned_citizenship_list
+<span class="ansi-green-fg">     13</span> df<span style="color: rgb(98,98,98)">.</span>drop(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">Country of Citizenship (Hebrew)</span><span style="color: rgb(175,0,0)">"</span>, axis<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">1</span>, inplace<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+<span class="ansi-green-fg">     15</span> entry_file_dict[year] <span style="color: rgb(98,98,98)">=</span> df
 
 File <span class="ansi-green-intense-fg ansi-bold">~\.conda\envs\BlankityBlankityBlank\Lib\site-packages\pandas\core\frame.py:4091</span>, in <span class="ansi-cyan-fg">DataFrame.__setitem__</span><span class="ansi-blue-intense-fg ansi-bold">(self, key, value)</span>
 <span class="ansi-green-fg">   4088</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_setitem_array([key], value)
@@ -8490,12 +8491,16 @@ File <span class="ansi-green-intense-fg ansi-bold">~\.conda\envs\BlankityBlankit
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">clean_citizenship_list</span><span class="p">(</span><span class="n">input_list</span><span class="p">):</span>
-    <span class="n">new_cleaned_citizenship_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">new_cleaned_citizenship_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Total"</span><span class="p">]</span>
     <span class="n">continent</span> <span class="o">=</span> <span class="s2">""</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">input_list</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">input_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
         <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s2">"Turkey"</span><span class="p">:</span>  <span class="c1"># i dont think i need to explain why this change was made</span>
             <span class="n">new_cleaned_citizenship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Turkiye"</span><span class="p">)</span>
             <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s2">"USA"</span><span class="p">:</span>
+            <span class="n">new_cleaned_citizenship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"United States"</span><span class="p">)</span>
+            <span class="k">continue</span>
+            
         <span class="k">if</span> <span class="s2">"USSR (former)"</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span> <span class="c1"># im not looking if it has "(4)" because they might add more footnotes in the future</span>
             <span class="n">new_cleaned_citizenship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"USSR (former)"</span><span class="p">)</span>
             <span class="k">continue</span>
@@ -8560,7 +8565,7 @@ File <span class="ansi-green-intense-fg ansi-bold">~\.conda\envs\BlankityBlankit
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>['TOTAL',
+<pre>['Total',
  'Asia - total',
  'India',
  'Turkiye',
@@ -8578,7 +8583,7 @@ File <span class="ansi-green-intense-fg ansi-bold">~\.conda\envs\BlankityBlankit
  'Romania',
  'Europe - other',
  'America-Oceania - total',
- 'USA',
+ 'United States',
  'America-Oceania - other']</pre>
 </div>
 </div>
@@ -8938,7 +8943,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 <tbody>
 <tr>
 <th>0</th>
-<td>TOTAL</td>
+<td>Total</td>
 <td>51.0</td>
 <td>2.00</td>
 <td>5.00</td>
@@ -9208,7 +9213,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 </tr>
 <tr>
 <th>19</th>
-<td>USA</td>
+<td>United States</td>
 <td>89.0</td>
 <td>10.39</td>
 <td>9.09</td>
@@ -9299,7 +9304,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 <tbody>
 <tr>
 <th>0</th>
-<td>TOTAL</td>
+<td>Total</td>
 <td>67</td>
 <td>4.1</td>
 <td>8.1</td>
@@ -9737,7 +9742,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 <tbody>
 <tr>
 <th>0</th>
-<td>TOTAL</td>
+<td>Total</td>
 <td>67</td>
 <td>4.1</td>
 <td>8.1</td>
@@ -10182,7 +10187,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 <tbody>
 <tr>
 <th>0</th>
-<td>TOTAL</td>
+<td>Total</td>
 <td>58.0</td>
 <td>4.8</td>
 <td>8.3</td>
@@ -10742,7 +10747,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 <tbody>
 <tr>
 <th>0</th>
-<td>TOTAL</td>
+<td>Total</td>
 <td>77.0</td>
 <td>1.9</td>
 <td>3.9</td>
@@ -10997,7 +11002,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 </tr>
 <tr>
 <th>18</th>
-<td>USA</td>
+<td>United States</td>
 <td>65.0</td>
 <td>7.3</td>
 <td>8.7</td>
@@ -11128,7 +11133,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 <tbody>
 <tr>
 <th>0</th>
-<td>TOTAL</td>
+<td>Total</td>
 <td>77.0</td>
 <td>1.9</td>
 <td>3.9</td>
@@ -11383,7 +11388,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 </tr>
 <tr>
 <th>18</th>
-<td>USA</td>
+<td>United States</td>
 <td>65.0</td>
 <td>7.3</td>
 <td>8.7</td>
@@ -11512,7 +11517,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 <tbody>
 <tr>
 <th>0</th>
-<td>TOTAL</td>
+<td>Total</td>
 <td>61.9</td>
 <td>2.4</td>
 <td>5.0</td>
@@ -11767,7 +11772,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 </tr>
 <tr>
 <th>18</th>
-<td>USA</td>
+<td>United States</td>
 <td>77.8</td>
 <td>10.3</td>
 <td>7.3</td>
@@ -11870,7 +11875,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 <tbody>
 <tr>
 <th>0</th>
-<td>TOTAL</td>
+<td>Total</td>
 <td>73.0</td>
 <td>1.5</td>
 <td>5.3</td>
@@ -12140,7 +12145,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 </tr>
 <tr>
 <th>19</th>
-<td>USA</td>
+<td>United States</td>
 <td>95.2</td>
 <td>3.7</td>
 <td>16.2</td>
@@ -12203,9 +12208,11 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
     <span class="kn">import</span> <span class="nn">re</span>
 
     <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'\((\d+)\)(?!\w)'</span>
-    <span class="n">new_cleaned_citizenship_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">new_cleaned_citizenship_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Total"</span><span class="p">]</span>
     <span class="n">continent</span> <span class="o">=</span> <span class="s2">""</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">input_list</span><span class="p">:</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">input_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
         <span class="c1"># if theres footnotes in the item, then the "result" variable wont be the same as the original item</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="n">item</span><span class="p">:</span>
@@ -12214,6 +12221,115 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 
         <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s2">"Turkey"</span><span class="p">:</span>
             <span class="n">new_cleaned_citizenship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Turkiye"</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s2">"USA"</span><span class="p">:</span>
+            <span class="n">new_cleaned_citizenship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"United States"</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="s2">"America-Oceania"</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+            <span class="n">new_cleaned_citizenship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"America-Oceania - total"</span><span class="p">)</span>
+            <span class="n">continent</span> <span class="o">=</span> <span class="s2">"America-Oceania"</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="s2">"total"</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+            <span class="n">continent</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="s2">"Other"</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+            <span class="n">new_cleaned_citizenship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">continent</span><span class="si">}</span><span class="s2"> - other"</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="n">new_cleaned_citizenship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_cleaned_citizenship_list</span>
+
+<span class="n">xls</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">last_arrival_file</span><span class="p">)</span>
+<span class="n">df_2004</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xls</span><span class="p">,</span> <span class="n">second_sheet_name</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="n">year_2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">number_of_rows</span><span class="p">)</span>   
+
+<span class="n">df_2004</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_2004</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span>
+
+<span class="n">clean_citizenship_list_generalized</span><span class="p">(</span><span class="n">df_2004</span><span class="p">[</span><span class="s2">"Country of Citizenship"</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+
+<span class="c1"># df_2004["Country of Citizenship"] = clean_citizenship_list_generalized(df_2004["Country of Citizenship"].to_list())</span>
+<span class="c1"># df_2004.drop("Country of Citizenship (Hebrew)", axis=1, inplace=True)</span>
+
+<span class="c1"># df_2004</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[35]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>['Total',
+ 'Asia - total',
+ 'India',
+ 'Turkiye',
+ 'Jordan',
+ 'China',
+ 'Philippines',
+ 'Thailand',
+ 'Other countries',
+ 'Africa - total',
+ 'Europe - total',
+ 'Bulgaria',
+ 'USSR (former)',
+ 'Germany',
+ 'United Kingdom',
+ 'Romania',
+ 'Europe - other',
+ 'America-Oceania - total',
+ 'United States',
+ 'America-Oceania - other']</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ca38ad79">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>but waiiiiiiiit</p>
+<p>"Asia - other" got broken because the "Other countries" entry in Asia also had a footnote</p>
+<p>the fix is kinda simple but its hard to explain how it works. something python something something</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0727874b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">clean_citizenship_list_generalized</span><span class="p">(</span><span class="n">input_list</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">re</span>
+
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'\((\d+)\)(?!\w)'</span>
+
+    <span class="n">new_cleaned_citizenship_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Total"</span><span class="p">]</span>
+    <span class="n">continent</span> <span class="o">=</span> <span class="s2">""</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">input_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="c1"># if theres footnotes in the item, then the "result" variable wont be the same as the original item</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="n">item</span><span class="p">:</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">result</span>
+
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s2">"Turkey"</span><span class="p">:</span>
+            <span class="n">new_cleaned_citizenship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Turkiye"</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s2">"USA"</span><span class="p">:</span>
+            <span class="n">new_cleaned_citizenship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"United States"</span><span class="p">)</span>
             <span class="k">continue</span>
 
         <span class="k">if</span> <span class="s2">"America-Oceania"</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
@@ -12252,7 +12368,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[35]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[36]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -12289,7 +12405,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 <tbody>
 <tr>
 <th>0</th>
-<td>TOTAL</td>
+<td>Total</td>
 <td>73.0</td>
 <td>1.5</td>
 <td>5.3</td>
@@ -12409,7 +12525,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 </tr>
 <tr>
 <th>8</th>
-<td>Other countries</td>
+<td>Asia - other</td>
 <td>56.0</td>
 <td>0.9</td>
 <td>0.6</td>
@@ -12559,7 +12675,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 </tr>
 <tr>
 <th>19</th>
-<td>USA</td>
+<td>United States</td>
 <td>95.2</td>
 <td>3.7</td>
 <td>16.2</td>
@@ -12599,7 +12715,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">data_list</span> <span class="o">=</span> <span class="n">arrival_file_dict</span> <span class="o">|</span> <span class="p">{</span>
@@ -12619,7 +12735,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[36]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[37]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>dict_keys([1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022])</pre>
 </div>
@@ -12642,7 +12758,7 @@ Asia - total C:\Users\vardonir\Documents\GitHub\CBSTest\Data\2023\2. Population\
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelWriter</span><span class="p">(</span><span class="s1">'compiled.xlsx'</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>  
